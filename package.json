@@ -1,0 +1,25 @@
+{
+  "name": "tarot_backend",
+  "version": "1.0.0",
+  "description": "tarot backend for dating app",
+  "main": "app.js",
+  "scripts": {
+    "pm2": "pm2 start pm2.json --no-daemon",
+    "start": "node ./bin/www",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duc-luong-tnsl/tarot_backend.git"
+  },
+  "author": "duc.luong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duc-luong-tnsl/tarot_backend/issues"
+  },
+  "homepage": "https://github.com/duc-luong-tnsl/tarot_backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pm2": "^4.5.6"
+  }
+}

@@ -1,0 +1,42 @@
+version: '3'
+
+
+services: 
+  api:
+    image: tarot
+    container_name: tarot
+    ports: 
+      - '3000:3000'
+    volumes: 
+      - ./:/usr/src/app
+    networks: 
+      - tarot
+    command: ['npm', 'run', 'start']
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass12345
+    volumes:
+      - tarot-mongodb-data:/data/db
+    networks:
+      - tarot
+    expose:
+      - "27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo 10.10.10.60:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  tarot-mongodb-data:
+
+networks:
+  tarot:
+    driver: bridge
+
+    
